@@ -1,6 +1,6 @@
 {
   "name": "ng-disable-scroll-nocss",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Disable page from scrolling when certain events happen.",
   "main": "ng-disable-scroll-nocss.js",
   "scripts": {
