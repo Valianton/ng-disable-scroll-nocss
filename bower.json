@@ -1,12 +1,10 @@
 {
-  "name": "ng-disable-scroll",
-  "version": "0.1.1",
-  "homepage": "https://github.com/shaketbaby/ng-disable-scroll",
-  "authors": [
-    "shaketbaby"
-  ],
+  "name": "ng-disable-scroll-nocss",
+  "version": "0.1.2",
+  "homepage": "https://github.com/xdemocle/ng-disable-scroll-nocss",
+  "authors": "xdemocle",
   "description": "Disable page from scrolling when certain events happen",
-  "main": "disable-scroll.js",
+  "main": "disable-scroll-js.js",
   "moduleType": [
     "globals",
     "node"
