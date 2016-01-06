@@ -64,12 +64,15 @@
 
           function preventDefaultForScrollKeys(event) {
 
+            if (event.target.type === 'text') {
+              return true;
+            }
+
             if (keys[event.keyCode]) {
-
-              scrollHandler(event);
-
               return false;
             }
+
+            return true;
           }
 
           function disableScroll() {
@@ -85,6 +88,11 @@
           }
 
           function scrollAllowed(event) {
+
+            if (event.type === 'keydown') {
+
+              return preventDefaultForScrollKeys(event);
+            }
 
             var selector = $attrs.scrollableElements;
 
