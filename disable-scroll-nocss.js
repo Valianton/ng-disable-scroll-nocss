@@ -29,7 +29,15 @@
 
           var isListening = false;
 
+          var element = $element[0];
+
+          var touchStart = 0;
+          var touchMove = 0;
+
+          var deltaY = 0;
+
           $scope.$watch($attrs.ngDisableScroll, function(shouldDisable) {
+
 
             if (shouldDisable) {
 
@@ -51,13 +59,26 @@
 
             var isScrollAllowed = scrollAllowed(event);
 
+
+            if (element.scrollTop + element.offsetHeight >= element.scrollHeight && (event.deltaY > 0 || deltaY > 0))
+            {
+              isScrollAllowed = false;
+            }
+
+            if (element.scrollTop == 0 && (event.deltaY < 0 || deltaY < 0))
+            {
+              isScrollAllowed = false;
+            }
+
             if (!isScrollAllowed) {
               event.returnValue = false;
               event.preventDefault();
             }
 
+            
             // Also prevent scroll of main window
             $window.onscroll = function () {
+
               $window.scrollTo(0, currentScrollY);
             }
           }
@@ -79,6 +100,19 @@
             currentScrollY = $window.scrollY;
             $document.bind(eventsListening, scrollHandler);
             isListening = true;
+
+             $document.bind('touchstart', getTouchStart);
+             $document.bind('touchmove', getTouchMove);
+          }
+
+          function getTouchStart(event) {
+            touchStart = event.touches[0].clientY;
+          }
+
+          function getTouchMove(event) {
+            touchMove = event.touches[0].clientY;
+            deltaY = touchMove < touchStart ? 1 : -1;
+            console.log(deltaY);
           }
 
           function unbindHandler() {
